@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+        <script type="text/javascript" charset="utf-8" src="phonegap/js/cordova-1.7.0.js"></script>
+        <script type="text/javascript" charset="utf-8" src="phonegap/plugin/wizSpinner/wizSpinner.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            var pausedTime;
+            function onBodyLoad() {
+                document.addEventListener("deviceready",onDeviceReady,false);
+                document.addEventListener("pause", function () {}, false);
+                document.addEventListener("resume", function () {}, false);
+            }
+
+            function onDeviceReady() {
+                console.log("ready");
+                cordova.exec(null, null, 'SplashScreen', 'hide', []);
+                deviceIsReady = true;
+            }
+            
+            function startSpinner() {
+                console.log("startSpinner");
+                wizSpinner.show( { timeout : 5, spinnerColour : "grey", textColour : "black", opacity : 0.2 } );
+            }
+
+            function shouldRotateToOrientation (orientation)
+            {
+                if (deviceIsReady == true) {
+                    switch (orientation) {
+                        case 0:
+                        // portrait normal
+                        window.wizSpinner.rotate(1);
+                        return true;
+                        break;
+                        case 90:
+                        // landscape left
+                        window.wizSpinner.rotate(3);
+                        return true;
+                        break;
+                        case -90:
+                        // landscape right
+                        window.wizSpinner.rotate(4);
+                        return true;
+                        break;
+                        case 180:
+                        // portrait upside down
+                        window.wizSpinner.rotate(2);
+                        return true;
+                        break
+                    }
+                }
+            }
+            
+            function success(x) { console.log("[cb]success " + JSON.stringify(x)); }
+            function failure(x) { console.log("[cb]failure " + JSON.stringify(x)); }
+        </script>
+    </head>
+    <body onload="onBodyLoad()" style="padding-top:50px;font-size:2em">
+        test buttons<br />
+        <input type="button" id="push_button" value="startSpinner" onclick="startSpinner()" />
+    </body>
+</html>
