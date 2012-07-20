@@ -17,11 +17,11 @@ The Spec;
 - the gif must be resize-able so add width and height options to the API call from JS for the custom image options
 - the gif is not transparent so dont worry it is not important if it looks like hell
 - you must use PhoneGap 1.7
-- you must use wizSpinner branch 1.7
+- you must use wizSpinner plugin
 - you must use latest iOS SDK
 - minimum target is iOS 4.3
 
  
 Lastly,
-If you dont finish just send us what you have!
+If you dont finish just send us what you have! :)
 Good luck and hf! May the unicorn god of rainbows be with you!
