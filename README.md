@@ -18,6 +18,8 @@ The Spec;
 - the gif is not transparent so dont worry it is not important if it looks like hell
 - you must use PhoneGap 1.7
 - you must use wizSpinner branch 1.7
+- you must use latest iOS SDK
+- minimum target is iOS 4.3
 
  
 Lastly,
