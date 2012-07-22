@@ -2,13 +2,11 @@
  *
  * @author Ally Ogilvie
  * @copyright WizCorp Inc. [ Incorporated Wizards ] 2011
- * @file WizAssetsPluginExtendsCDVViewController.m for PhoneGap
+ * @file WizAssetsPluginExtendCDVViewController.m for PhoneGap
  *
  */ 
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <Cordova/CDVViewController.h>
+#import "WizAssetsPluginExtendCDVViewController.h"
 #import "WizDebugLog.h"
 
 #define degreesToRadians(x) (M_PI * x / 180.0)
