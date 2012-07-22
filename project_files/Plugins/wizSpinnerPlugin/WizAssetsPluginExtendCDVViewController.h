@@ -14,7 +14,7 @@
 
 @interface CDVViewController (extendViews)
 
-
+// TODO: Implement these methods to remove warnings.
 -(CDVViewController*)addWizConsole:(UITextView*)consoleView;
 -(CDVViewController*)updateWizConsole:(NSString*)myText;
 -(CDVViewController*)showWizConsole:(NSString*)myText;
