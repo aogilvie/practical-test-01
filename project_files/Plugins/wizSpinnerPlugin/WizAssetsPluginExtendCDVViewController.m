@@ -7,6 +7,7 @@
  */ 
 
 #import "WizAssetsPluginExtendCDVViewController.h"
+#import "WizActivitySpinnerView.h"
 #import "WizDebugLog.h"
 
 #define degreesToRadians(x) (M_PI * x / 180.0)
@@ -77,7 +78,7 @@
     for(UIView* spinnerHolder in [UIApplication sharedApplication].keyWindow.subviews) {
         if(spinnerHolder.tag==44){
             // hide spinner
-            for(UIActivityIndicatorView*spinnerView in spinnerHolder.subviews) {
+            for(WizActivitySpinnerView*spinnerView in spinnerHolder.subviews) {
                 if(spinnerView.tag==45){
                     [spinnerView setHidden:TRUE];
                     [spinnerView setAlpha:0.0];
@@ -113,7 +114,7 @@
 {
     NSLog(@"****************************************** remove spinner");
     // remove view
-    for(UIActivityIndicatorView*spinnerView in [UIApplication sharedApplication].keyWindow.subviews) {
+    for(WizActivitySpinnerView*spinnerView in [UIApplication sharedApplication].keyWindow.subviews) {
         if(spinnerView.tag==45){
             [spinnerView removeFromSuperview];
         }
@@ -251,8 +252,8 @@
             textColour       = @"white";
         }
         
-        
-        
+        CGFloat width = [[options objectForKey:@"width"] floatValue];
+        CGFloat height = [[options objectForKey:@"height"] floatValue];
         
 
         
@@ -265,15 +266,16 @@
                 CGFloat screenHeight = screenRect.size.height;
                 
                 
-                // set UIActivityIndicatorView
-                for(UIActivityIndicatorView*spinnerView in spinnerHolder.subviews) {
+                // set WizActivitySpinnerView
+                for(WizActivitySpinnerView *spinnerView in spinnerHolder.subviews) {
                     if(spinnerView.tag==45){
+                        // TODO: Implement colors
                         if ([spinnerColour isEqualToString:@"white"]) {
-                            [spinnerView setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                            // TODO: white color
                         } else if ([spinnerColour isEqualToString:@"grey"]) {
-                            [spinnerView setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+                            // TODO: grey color
                         } else {
-                            [spinnerView setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+                            // TODO: default color
                         }
 
                         if ([pos isEqualToString:@"low"]) {
@@ -290,6 +292,11 @@
                             [spinnerView setCenter:CGPointMake(screenWidth/2, screenHeight/2)];
                             
                         }
+                        
+                        if ( width > 0 && height > 0 ) {
+                            [spinnerView setSize:CGSizeMake(width, height)];
+                        }
+
                         if (showSpinner == 1) {
                             [spinnerView setHidden:FALSE];
                             [spinnerView setAlpha:1.0];
@@ -345,12 +352,10 @@
         for(UIView* spinnerHolder in [UIApplication sharedApplication].keyWindow.subviews) {
             if(spinnerHolder.tag==44){
                 // show spinner
-                for(UIActivityIndicatorView*spinnerView in spinnerHolder.subviews) {
+                for(WizActivitySpinnerView*spinnerView in spinnerHolder.subviews) {
                     if(spinnerView.tag==45){
                         [spinnerView setHidden:FALSE];
                         [spinnerView setAlpha:1.0];
-                        [spinnerView setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
-                        
                     }
                 }
                 // show text label
@@ -416,6 +421,8 @@
     NSString *textColour    = @"white"; 
     CGFloat opacity         = 0.0 ;            
     NSString *spinnerColour = @"white";
+    CGFloat width           = 0.0;
+    CGFloat height          = 0.0;
 
     if (options) 
 	{
@@ -454,6 +461,9 @@
             textColour          = @"white";
         }
         
+        width = [[options objectForKey:@"width"] floatValue];
+        height = [[options objectForKey:@"height"] floatValue];
+
     }
 
     
@@ -487,7 +497,13 @@
     
     
     // create spinner
-    UIActivityIndicatorView *activitySpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    // Some URLs for testing local and remote loading of custom animated .gif
+    // (Invalid URL or non-existent file will fail silently and not display any image)
+    // TODO: Add some reasonable error handling and default image
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"custom" ofType:@"gif" inDirectory:nil]];
+    //NSURL *url = [NSURL URLWithString:@"https://github.com/aogilvie/practical-test-01/raw/master/custom.gif"];
+    //NSURL *url = [NSURL URLWithString:@"http://images.animationfactory.com/thw/thw14/AF/animations/time/clocks/mr_alarm_dragging_feet/4966736.gif?mr_alarm_dragging_feet_lg_wm"];
+    WizActivitySpinnerView *activitySpinner = [[WizActivitySpinnerView alloc] initWithImageURL:url];
     [activitySpinner setCenter:CGPointMake(screenWidth/2, screenHeight/1.5)];
     [activitySpinner setAlpha:1.0];
     [activitySpinner setBackgroundColor:[UIColor clearColor]];
@@ -496,6 +512,9 @@
     [activitySpinner setClipsToBounds:TRUE];
     [activitySpinner setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin];
     [activitySpinner setContentMode:UIViewContentModeScaleToFill];
+    if ( width > 0 && height > 0 ) {
+        [activitySpinner setSize:CGSizeMake(width, height)];
+    }
     
         
     if ([pos isEqualToString:@"low"]) {
@@ -513,14 +532,14 @@
         
     }
     
+    // TODO: Implement color handling
     if ([spinnerColour isEqualToString:@"white"]) {
-        [activitySpinner setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        // TODO: white color
     } else if ([spinnerColour isEqualToString:@"grey"]) {
-        [activitySpinner setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+        // TODO: grey color
     } else {
-        [activitySpinner setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+        // TODO: default color
     }
-    
     
     
     
@@ -560,11 +579,20 @@
     [spinnerHolder addSubview:backgroundScreen];
     [spinnerHolder addSubview:activitySpinner];
     [spinnerHolder addSubview:loaderStatus];
-    [backgroundScreen retain];
-    [activitySpinner retain];
-    [loaderStatus retain];
-
-
+    
+    // Leaking memory is bad Ally. Good test though. :)
+    // After these release messages are sent, the objects remain allocated
+    // (with a retainCount of 1) for as long as they have a superview.
+    // The previous code sent retain messages which incremented the retainCounts
+    // without ever decrementing retainCounts (via release messages).  Worse, the
+    // original code didn't even hang on to the objects as member variables or
+    // properties -- so it was not even possible to send release messages later.
+    [backgroundScreen release];
+    [activitySpinner release];
+    [loaderStatus release];
+    
+    // And don't forget to send a release to spinnerHolder. :)
+    [spinnerHolder release];
     
     return NULL;
     
