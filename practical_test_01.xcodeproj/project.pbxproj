@@ -55,6 +55,9 @@
 		4FE7A536155120AF0066D32D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FE7A535155120AF0066D32D /* CoreMotion.framework */; };
 		4FE7A538155120BC0066D32D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FE7A537155120BC0066D32D /* CoreText.framework */; };
 		54835DF6159315D70022A4D5 /* ExceptionDebugPlugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54835DF5159315D70022A4D5 /* ExceptionDebugPlugin.mm */; };
+		F60DC4C915BBEC87009F99F3 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F60DC4C815BBEC87009F99F3 /* ImageIO.framework */; };
+		F60DC4CD15BBF2E6009F99F3 /* custom.gif in Resources */ = {isa = PBXBuildFile; fileRef = F60DC4CC15BBF2E6009F99F3 /* custom.gif */; };
+		F62FB68115BBDAFE00663C0D /* WizActivitySpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F62FB68015BBDAFE00663C0D /* WizActivitySpinnerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +123,10 @@
 		4FE7A537155120BC0066D32D /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		54835DF4159315D70022A4D5 /* ExceptionDebugPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExceptionDebugPlugin.h; sourceTree = "<group>"; };
 		54835DF5159315D70022A4D5 /* ExceptionDebugPlugin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ExceptionDebugPlugin.mm; sourceTree = "<group>"; };
+		F60DC4C815BBEC87009F99F3 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		F60DC4CC15BBF2E6009F99F3 /* custom.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = custom.gif; sourceTree = "<group>"; };
+		F62FB67F15BBDAFE00663C0D /* WizActivitySpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizActivitySpinnerView.h; sourceTree = "<group>"; };
+		F62FB68015BBDAFE00663C0D /* WizActivitySpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizActivitySpinnerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F60DC4C915BBEC87009F99F3 /* ImageIO.framework in Frameworks */,
 				4F763FFC15804CE900770319 /* CoreData.framework in Frameworks */,
 				4FE7A538155120BC0066D32D /* CoreText.framework in Frameworks */,
 				4FE7A536155120AF0066D32D /* CoreMotion.framework in Frameworks */,
@@ -199,6 +207,7 @@
 				4F1F23551562579100344943 /* Localizable.strings */,
 				4F1F23591562579100344943 /* icons */,
 				4F1F235E1562579100344943 /* splash */,
+				F60DC4CB15BBF2E6009F99F3 /* spinner */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -240,6 +249,8 @@
 				4FA4839E1574FE3700DBA289 /* WizAssetsPluginExtendCDVViewControllerPrivate.h */,
 				4FA4839F1574FE3700DBA289 /* wizSpinnerPlugin.h */,
 				4FA483A01574FE3700DBA289 /* wizSpinnerPlugin.m */,
+				F62FB67F15BBDAFE00663C0D /* WizActivitySpinnerView.h */,
+				F62FB68015BBDAFE00663C0D /* WizActivitySpinnerView.m */,
 			);
 			name = wizSpinnerPlugin;
 			path = project_files/Plugins/wizSpinnerPlugin;
@@ -267,6 +278,7 @@
 		4FE7A3021550E5E70066D32D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F60DC4C815BBEC87009F99F3 /* ImageIO.framework */,
 				4F763FFB15804CE900770319 /* CoreData.framework */,
 				4F91CAB6155B67CE00BA9750 /* Cordova.framework */,
 				4FE7A537155120BC0066D32D /* CoreText.framework */,
@@ -307,6 +319,14 @@
 			name = ExceptionDebugPlugin;
 			path = project_files/Plugins/ExceptionDebugPlugin;
 			sourceTree = SOURCE_ROOT;
+		};
+		F60DC4CB15BBF2E6009F99F3 /* spinner */ = {
+			isa = PBXGroup;
+			children = (
+				F60DC4CC15BBF2E6009F99F3 /* custom.gif */,
+			);
+			path = spinner;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -374,6 +394,7 @@
 				4F1F23731562579100344943 /* Default.png in Resources */,
 				4F1F23741562579100344943 /* Default@2x.png in Resources */,
 				4F1F23751562579100344943 /* verify.sh in Resources */,
+				F60DC4CD15BBF2E6009F99F3 /* custom.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +413,7 @@
 				4FA483B91574FE3800DBA289 /* wizSpinnerPlugin.m in Sources */,
 				4F763FFA15804A7300770319 /* DBModel.xcdatamodeld in Sources */,
 				54835DF6159315D70022A4D5 /* ExceptionDebugPlugin.mm in Sources */,
+				F62FB68115BBDAFE00663C0D /* WizActivitySpinnerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
